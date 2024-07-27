@@ -52,7 +52,7 @@ module DFlipFlop_wb;
 
     // Monitor outputs
     initial begin
-        $dumpfile("DFlipFlop_wb.vcd");
+        $dumpfile("DFlipFlop.vcd");
         $dumpvars(0, DFlipFlop_wb);
         $monitor("Time = %d, clk = %b, D = %b, Q = %b", $time, clk, D, Q);
     end
