@@ -6,10 +6,10 @@ module mux4bto1s(
 
 wire [3:0] wire_in;
 
-assign wire_in[0] = (~sel[0]) & (~sel[1]) & (in[0]);
-assign wire_in[1] = (~sel[0]) & (sel[1]) & (in[1]);
-assign wire_in[2] = (sel[0]) & (~sel[1]) & (in[2]);
-assign wire_in[3] = (sel[0]) & (sel[1]) & (in[3]);
+assign wire_in[0] = (~sel[1]) & (~sel[0]) & (in[3]);
+assign wire_in[1] = (~sel[1]) & (sel[0]) & (in[2]);
+assign wire_in[2] = (sel[1]) & (~sel[0]) & (in[1]);
+assign wire_in[3] = (sel[1]) & (sel[0]) & (in[0]);
 
 assign out = wire_in[0] | wire_in[1] | wire_in[2] | wire_in[3];
 
@@ -21,36 +21,36 @@ module mux16to1(
   output out
 );
 
-wire [3:0] wire_in;
+wire [3:0] wire_in2;
 
 mux4bto1s mux4bto1s_0(
-  .in(in[3:0]),
-  .sel(sel[1:0]),
-  .out(wire_in[0])
+  in[15:12],
+  sel[1:0],
+  wire_in2[3]
 );
 
 mux4bto1s mux4bto1s_1(
-  .in(in[7:4]),
-  .sel(sel[1:0]),
-  .out(wire_in[1])
+  in[11:8],
+  sel[1:0],
+  wire_in2[2]
 );
 
 mux4bto1s mux4bto1s_2(
-  .in(in[11:8]),
-  .sel(sel[1:0]),
-  .out(wire_in[2])
+  in[7:4],
+  sel[1:0],
+  wire_in2[1]
 );
 
 mux4bto1s mux4bto1s_3(
-  .in(in[15:12]),
-  .sel(sel[1:0]),
-  .out(wire_in[3])
+ in[3:0],
+  sel[1:0],
+  wire_in2[0]
 );
 
 mux4bto1s internal_mux4bto1s(
-  .in(wire_in[3:0]),
-  .sel(sel[3:2]),
-  .out(out)
+  wire_in2,
+  sel[3:2],
+  out
 );
 
 endmodule
