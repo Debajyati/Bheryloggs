@@ -1,0 +1,54 @@
+$date
+	Sat Sep  7 21:31:27 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module srlatch_wb $end
+$var wire 1 ! s $end
+$var wire 1 " r $end
+$var wire 1 # q_not $end
+$var wire 1 $ q $end
+$scope module latch $end
+$var wire 1 $ Q $end
+$var wire 1 # Q_not $end
+$var wire 1 ! S $end
+$var wire 1 " R $end
+$upscope $end
+$scope module testbench $end
+$var wire 1 $ q $end
+$var wire 1 # q_not $end
+$var reg 1 " r $end
+$var reg 1 ! s $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+x$
+x#
+0"
+0!
+$end
+#1
+1#
+0$
+1"
+#2
+1$
+0#
+0"
+1!
+#3
+0!
+#4
+0$
+1"
+1!
+#6

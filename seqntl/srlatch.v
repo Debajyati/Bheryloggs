@@ -1,16 +1,9 @@
-module SRLatch (
-    input wire S,  // Set input
-    input wire R,  // Reset input
-    output reg Q   // Data output
-);
+// file: sr_latch.v
+// Using Verilog to describe our SR Latch
+module sr_latch(
+    input wire S, R,
+    output wire Q, Q_not);
 
-always @* begin
-    if (S && !R)
-        Q <= 1;
-    else if (!S && R)
-        Q <= 0;
-    // if both S and R are low, Q retains its value
-end
-
+    assign Q     = ~(R | Q_not);
+    assign Q_not = ~(S | Q);
 endmodule
-

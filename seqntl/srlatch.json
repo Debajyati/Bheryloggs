@@ -1,0 +1,97 @@
+{
+  "creator": "Yosys 0.36 (git sha1 cc31c6e, g++ 12.2.0 -fstack-clash-protection -mtune=generic -O2 -ffile-prefix-map=/builddir/yosys-0.36=. -fPIC -Os)",
+  "modules": {
+    "sr_latch": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "srlatch.v:3.1-9.10"
+      },
+      "ports": {
+        "S": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "Q_not": {
+          "direction": "output",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$abc$86$auto$blifparse.cc:386:parse_blif$88": {
+          "hide_name": 1,
+          "type": "$_NOR_",
+          "parameters": {
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4 ],
+            "B": [ 2 ],
+            "Y": [ 5 ]
+          }
+        },
+        "$abc$86$auto$blifparse.cc:386:parse_blif$89": {
+          "hide_name": 1,
+          "type": "$_NOR_",
+          "parameters": {
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5 ],
+            "B": [ 3 ],
+            "Y": [ 4 ]
+          }
+        }
+      },
+      "netnames": {
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "srlatch.v:5.17-5.18"
+          }
+        },
+        "Q_not": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "srlatch.v:5.20-5.25"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "srlatch.v:4.19-4.20"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "srlatch.v:4.16-4.17"
+          }
+        }
+      }
+    }
+  }
+}

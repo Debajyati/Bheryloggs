@@ -1,0 +1,89 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib64/ivl/system.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib64/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib64/ivl/va_math.vpi";
+S_0x55558a56b390 .scope module, "srlatch_wb" "srlatch_wb" 2 41;
+ .timescale 0 0;
+v0x55558a5845b0_0 .net "q", 0 0, L_0x55558a584a00;  1 drivers
+v0x55558a5846a0_0 .net "q_not", 0 0, L_0x55558a584b50;  1 drivers
+v0x55558a5847b0_0 .net "r", 0 0, v0x55558a5843e0_0;  1 drivers
+v0x55558a5848a0_0 .net "s", 0 0, v0x55558a5844b0_0;  1 drivers
+S_0x55558a56b520 .scope module, "latch" "sr_latch" 2 46, 3 3 0, S_0x55558a56b390;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "S";
+    .port_info 1 /INPUT 1 "R";
+    .port_info 2 /OUTPUT 1 "Q";
+    .port_info 3 /OUTPUT 1 "Q_not";
+L_0x55558a584990 .functor OR 1, v0x55558a5843e0_0, L_0x55558a584b50, C4<0>, C4<0>;
+L_0x55558a584a00 .functor NOT 1, L_0x55558a584990, C4<0>, C4<0>, C4<0>;
+L_0x55558a584ac0 .functor OR 1, v0x55558a5844b0_0, L_0x55558a584a00, C4<0>, C4<0>;
+L_0x55558a584b50 .functor NOT 1, L_0x55558a584ac0, C4<0>, C4<0>, C4<0>;
+v0x55558a56b700_0 .net "Q", 0 0, L_0x55558a584a00;  alias, 1 drivers
+v0x55558a583b80_0 .net "Q_not", 0 0, L_0x55558a584b50;  alias, 1 drivers
+v0x55558a583c40_0 .net "R", 0 0, v0x55558a5843e0_0;  alias, 1 drivers
+v0x55558a583ce0_0 .net "S", 0 0, v0x55558a5844b0_0;  alias, 1 drivers
+v0x55558a583da0_0 .net *"_ivl_0", 0 0, L_0x55558a584990;  1 drivers
+v0x55558a583ed0_0 .net *"_ivl_4", 0 0, L_0x55558a584ac0;  1 drivers
+S_0x55558a584030 .scope module, "testbench" "srlatch_tb" 2 47, 2 4 0, S_0x55558a56b390;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /OUTPUT 1 "r";
+    .port_info 2 /INPUT 1 "q";
+    .port_info 3 /INPUT 1 "q_not";
+v0x55558a5842a0_0 .net "q", 0 0, L_0x55558a584a00;  alias, 1 drivers
+v0x55558a584340_0 .net "q_not", 0 0, L_0x55558a584b50;  alias, 1 drivers
+v0x55558a5843e0_0 .var "r", 0 0;
+v0x55558a5844b0_0 .var "s", 0 0;
+    .scope S_0x55558a584030;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5844b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5843e0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 14 "$display", "s=%b, r=%b ==> q=%b, q_not=%b # should be undefined", v0x55558a5844b0_0, v0x55558a5843e0_0, v0x55558a5842a0_0, v0x55558a584340_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5844b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55558a5843e0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 19 "$display", "s=%b, r=%b ==> q=%b, q_not=%b # reset, so q=0", v0x55558a5844b0_0, v0x55558a5843e0_0, v0x55558a5842a0_0, v0x55558a584340_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55558a5844b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5843e0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 24 "$display", "s=%b, r=%b ==> q=%b, q_not=%b # set, so q=1", v0x55558a5844b0_0, v0x55558a5843e0_0, v0x55558a5842a0_0, v0x55558a584340_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5844b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55558a5843e0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 29 "$display", "s=%b, r=%b ==> q=%b, q_not=%b # latch, so q=q (keep state)", v0x55558a5844b0_0, v0x55558a5843e0_0, v0x55558a5842a0_0, v0x55558a584340_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55558a5844b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55558a5843e0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 34 "$display", "s=%b, r=%b ==> q=%b, q_not=%b # invalid state, so discount error", v0x55558a5844b0_0, v0x55558a5843e0_0, v0x55558a5842a0_0, v0x55558a584340_0 {0 0 0};
+    %delay 1, 0;
+    %vpi_call 2 36 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x55558a56b390;
+T_1 ;
+    %vpi_call 2 51 "$dumpfile", "srlatch.vcd" {0 0 0};
+    %vpi_call 2 52 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55558a56b390 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "srlatch_simul.v";
+    "./srlatch.v";

@@ -10,7 +10,7 @@ end
 
 endmodule
 
-`timescale 1ns/1ps
+//`timescale 1ns/1ps
 
 module DFlipFlop_wb;
 
@@ -36,6 +36,7 @@ module DFlipFlop_wb;
     initial begin
         // Initialize inputs
         D = 0;
+        $monitor("Time = %d, clk = %b, D = %b, Q = %b", $time, clk, D, Q);
 
         // Apply test vectors
         #10 D = 1;
@@ -47,14 +48,13 @@ module DFlipFlop_wb;
         #10 D = 1;
 
         // End simulation after some time
-        #50 $finish;
+        #10 $finish;
     end
 
     // Monitor outputs
     initial begin
         $dumpfile("DFlipFlop.vcd");
         $dumpvars(0, DFlipFlop_wb);
-        $monitor("Time = %d, clk = %b, D = %b, Q = %b", $time, clk, D, Q);
     end
 
 endmodule
